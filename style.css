@@ -1,0 +1,156 @@
+/* ============ Dasar ============ */
+:root {
+  --ink: #1d2a35;
+  --muted: #5b6b78;
+  --blok: #f1f4f6;
+  --garis: #9fd3d6;
+  --aksen: #2f6f9f;
+  --putih: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 12px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #e6ebee;
+}
+
+h1, h2 { margin: 0 0 .5rem; line-height: 1.25; }
+h1 { font-size: 1.4rem; }
+h2 { font-size: 1.1rem; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* ============ Layout: smartphone (default) ============
+   Semua blok selebar 100%, ditumpuk ke bawah. */
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "header"
+    "nav"
+    "section"
+    "aside"
+    "footer";
+  gap: 10px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+header, nav, section, aside, footer {
+  border: 1px solid var(--garis);
+  background: var(--putih);
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+header  { grid-area: header; background: var(--blok); display: flex; align-items: center; gap: 14px; }
+nav     { grid-area: nav; }
+section { grid-area: section; min-height: 220px; }
+aside   { grid-area: aside; }
+footer  { grid-area: footer; background: var(--blok); }
+
+.avatar { width: 56px; height: 56px; flex: none; }
+
+/* Nav: daftar vertikal yang bisa di-scroll */
+nav ul { max-height: 130px; overflow-y: auto; }
+nav a {
+  display: block;
+  padding: 6px 4px;
+  color: var(--muted);
+  font-style: italic;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+nav a:hover { color: var(--aksen); }
+nav a.active { color: var(--aksen); font-weight: 600; border-left-color: var(--aksen); padding-left: 8px; }
+nav a:focus-visible { outline: 2px solid var(--aksen); outline-offset: 2px; }
+
+/* Section: hanya satu panel tampil dalam satu waktu */
+.panel { display: none; }
+.panel.show { display: block; }
+.panel li { padding: 6px 0; border-bottom: 1px solid #e3e8eb; }
+.panel li:last-child { border-bottom: 0; }
+
+/* Biodata: label di kiri, isi di kanan */
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 0;
+}
+dt { text-align: right; font-weight: 600; }
+dd { margin: 0; }
+
+aside li { padding: 3px 0; font-style: italic; }
+
+/* Footer */
+footer { display: grid; gap: 10px; text-align: center; font-size: .9rem; }
+.sosmed { display: flex; flex-direction: column; gap: 2px; }
+.sosmed a { color: var(--muted); text-decoration: none; }
+.sosmed a:hover { color: var(--aksen); text-decoration: underline; }
+.copy { margin: 0; color: var(--muted); }
+.brand { display: flex; flex-direction: column; }
+.brand strong { font-size: 1.05rem; }
+.brand span { color: var(--muted); }
+
+/* ============ Layout: tablet portrait (600px - 991px) ============
+   Semua blok tetap 100%, menu nav menjadi satu baris horizontal. */
+@media (min-width: 600px) {
+  body { padding: 18px; }
+  h1 { font-size: 1.6rem; }
+  .avatar { width: 68px; height: 68px; }
+
+  nav ul { display: flex; flex-wrap: wrap; gap: 4px 18px; max-height: none; overflow: visible; }
+  nav a { border-left: 0; border-bottom: 3px solid transparent; padding: 4px 2px; }
+  nav a.active { padding-left: 2px; border-bottom-color: var(--aksen); }
+
+  aside ul { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+
+  footer {
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: center;
+    text-align: left;
+  }
+  .copy { text-align: center; }
+  .brand { text-align: right; }
+}
+
+/* ============ Layout: tablet landscape (992px - 1199px) ============
+   Nav 25% + section 75%; header, aside, footer 100%. */
+@media (min-width: 992px) {
+  .container {
+    grid-template-columns: 25% 1fr;
+    grid-template-areas:
+      "header  header"
+      "nav     section"
+      "aside   aside"
+      "footer  footer";
+  }
+
+  nav ul { display: block; max-height: 260px; overflow-y: auto; }
+  nav a { border-bottom: 0; border-left: 3px solid transparent; padding: 6px 4px; }
+  nav a.active { border-left-color: var(--aksen); padding-left: 8px; }
+}
+
+/* ============ Layout: desktop (>= 1200px) ============
+   Nav 25% + section 50% + aside 25%; header dan footer 100%. */
+@media (min-width: 1200px) {
+  .container {
+    grid-template-columns: 25% 1fr 25%;
+    grid-template-areas:
+      "header header  header"
+      "nav    section aside"
+      "footer footer  footer";
+  }
+
+  aside ul { display: block; }
+}
+
+/* Hormati pengguna yang mengurangi animasi */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

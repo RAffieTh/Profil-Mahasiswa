@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil Mahasiswa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <svg class="avatar" viewBox="0 0 64 64" role="img" aria-label="Foto profil">
+        <rect width="64" height="64" rx="8" fill="#dbe9f4"/>
+        <circle cx="32" cy="24" r="11" fill="#4a7fb0"/>
+        <path d="M10 58c2-13 11-20 22-20s20 7 22 20z" fill="#4a7fb0"/>
+      </svg>
+      <h1>Profil Mahasiswa</h1>
+    </header>
+
+    <nav aria-label="Menu profil">
+      <ul>
+        <li><a href="#biodata" class="active" data-target="biodata">Biodata</a></li>
+        <li><a href="#pendidikan" data-target="pendidikan">Pendidikan</a></li>
+        <li><a href="#pengalaman" data-target="pengalaman">Pengalaman</a></li>
+        <li><a href="#keahlian" data-target="keahlian">Keahlian</a></li>
+        <li><a href="#publikasi" data-target="publikasi">Publikasi</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <article id="biodata" class="panel show">
+        <h2>Biodata</h2>
+        <dl>
+          <dt>NIM:</dt><dd>2025081013</dd>
+          <dt>Nama:</dt><dd>Raffy Thafjani Rusdiansyah</dd>
+          <dt>Agama:</dt><dd>Islam</dd>
+          <dt>Tanggal Lahir:</dt><dd>12 April 2007</dd>
+          <dt>Tempat Lahir:</dt><dd>Tangerang Selatan</dd>
+        </dl>
+      </article>
+
+      <article id="pendidikan" class="panel">
+        <h2>Pendidikan</h2>
+        <ul>
+          <li><strong>2025 – sekarang</strong><br>S1 sistem informasi, Universitas Pembangunan Jaya</li>
+          <li><strong>2022 – 2025</strong><br>SMA NEGRI 12 TANGSERANG SELATAN, Jurusan IPA</li>
+          <li><strong>2019 – 2022</strong><br>SMPN NEGRI 11</li>
+        </ul>
+      </article>
+
+      <article id="pengalaman" class="panel">
+        <h2>Pengalaman</h2>
+        <ul>
+          <li><strong>2025</strong><br>Anggota divisi PDD, Himpunan Mahasiswa SISTEM INFORMASI</li>
+          <li><strong>2024</strong><br>KOOR PDD Saat Pentas Seni SMA</li>
+          <li><strong></strong><br></li>
+        </ul>
+      </article>
+
+      <article id="keahlian" class="panel">
+        <h2>Keahlian</h2>
+        <ul>
+          <li>HTML dan CSS (layout responsif)</li>
+          <li>Design</li>
+          <li>Games</li>
+          <li>Sport</li>
+        </ul>
+      </article>
+
+      <article id="publikasi" class="panel">
+        <h2>Publikasi</h2>
+        <ul>
+          <li>-</li>
+        </ul>
+      </article>
+    </section>
+
+    <aside>
+      <h2>Hobi</h2>
+      <ul>
+        <li>Valorant</li>
+        <li>Boxing</li>
+        <li>Taekwondo</li>
+        <li>Music</li>
+      </ul>
+    </aside>
+
+    <footer>
+      <div class="sosmed">
+        <a href="https://TikTok.com/pewpewpiwpow">TikTok: @pewpewpiwpow</a>
+        <a href="https://instagram.com/fieestayam.jpg">Instagram: @fieestayam.jpg</a>
+      </div>
+      <p class="copy">&copy; Copyright 2026. All Rights Reserved</p>
+      <div class="brand">
+        <strong>Raffy</strong>
+        <span>Is it better to speak or to die?</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    var links = document.querySelectorAll('nav a');
+    var panels = document.querySelectorAll('section .panel');
+
+    function tampilkan(id) {
+      panels.forEach(function (p) { p.classList.toggle('show', p.id === id); });
+      links.forEach(function (a) { a.classList.toggle('active', a.dataset.target === id); });
+    }
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        tampilkan(a.dataset.target);
+      });
+    });
+  </script>
+</body>
+</html>
